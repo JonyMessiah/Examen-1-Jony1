@@ -27,10 +27,26 @@ namespace API.Controllers
             {
                 AdminRegulation am = new AdminRegulation();
 
-                response.Data = am.GetRegisteredAuthors();
+             List<Author> authors = am.GetRegisteredAuthors();
+                List<Author> authorsFiltered = new List<Author>();
+                foreach (var author in authors)
+                {
+
+                    if(author.FirstName.ToLower().Contains(searchName.ToLower()))
+                    {
+
+                        authorsFiltered.Add(author);
+                        
+                    }
+                    
+                }
+
+                response.Data = authorsFiltered;
                 response.Result = "OK";
                 return response;
             }
+
+
             catch (Exception ex)
             {
                 response.Result = "ERROR";

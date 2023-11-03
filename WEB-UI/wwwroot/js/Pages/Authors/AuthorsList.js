@@ -15,7 +15,7 @@
         //llamar al API y hacer el filtro basado en esa frase
 
         var searchName = $('#txtSearch').val();
-        var APIURL = API_URL_BASE + "/api/Article/GetAuthorsByName?searchName=" + searchName;
+        var APIURL = API_URL_BASE + "/api/Author/GetAuthorsByName?searchName=" + searchName;
 
         $.ajax({
             url: APIURL,
