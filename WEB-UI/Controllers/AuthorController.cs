@@ -1,12 +1,21 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DTO.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WEB_UI.Controllers
 {
-    public class HomeController1 : Controller
+    public class AuthorsController : Controller
     {
+
         public IActionResult Index()
         {
             return View();
         }
+
+        public IActionResult AuthorList()
+        {
+            return View();
+        }
+
     }
+
 }

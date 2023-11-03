@@ -30,6 +30,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Articles" asp-action="ArticleList">Articles</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Authors" asp-action="AuthorList">Authors</a>
+                        </li>
                         @if (Accesor.HttpContext.Session.GetString("user") != null)
                         {
                             <li class="nav-item">
