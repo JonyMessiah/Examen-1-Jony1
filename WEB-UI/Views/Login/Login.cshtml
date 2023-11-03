@@ -1,0 +1,36 @@
+﻿@model DTO.Models.User
+@{
+    ViewBag.Title = "";
+    Layout = "../Shared/_LayoutNoMenu.cshtml";
+}
+
+@using (Html.BeginForm("Login", "Login", FormMethod.Post))
+{
+    <h2>ISA-IEEE Login</h2>
+
+    <div>
+        @if (ViewBag.Message != null)
+        {
+            <div style="color:red">@ViewBag.Message</div>
+        }
+    </div>
+
+    <table>
+        <tr>
+            <td>@Html.LabelFor(u => u.UserName, "User Id:")</td>
+            <td>@Html.TextBoxFor(u => u.UserName)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(u=> u.Password, "Password:")</td>
+            <td>@Html.PasswordFor(u => u.Password)</td>
+        </tr>
+        <tr>
+            <td>
+                <button id="btnLogin" type="submit" class="btn btn-success">Login</button>
+                <a class="btn btn-secondary" asp-area="" asp-controller="Login" asp-action="Cancel">Cancel</a>
+            </td>
+        </tr>
+    </table>
+
+}
+
