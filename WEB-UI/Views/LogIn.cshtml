@@ -1,0 +1,68 @@
+﻿@{
+    ViewBag.Title = "LogIn";
+    Layout = "../Shared/_LayoutNoMenu.cshtml";
+}
+<link rel="stylesheet" href="~/css/LogIn.css" asp-append-version="true" />
+<link href="~/css/registrarmascota.css" rel="stylesheet" />
+
+<div class="container-md">
+    <form id="loginForm">
+        <div class="container">
+            <div class="row" style="padding-top: 120px;">
+                <!-- Left part with the image taking 100% width -->
+                <div class="col-md-6" style="text-align: center;background-color: #F3DFA2;padding: 20px;border-radius: 15px;">
+                    <img src="/imgs/img-LogIn.png" style="width: 100%; margin: auto;">
+                    <div class="w-100" id="label-petsInc"></div>
+                </div>
+
+                <!-- Right part with other elements -->
+                <div class="col-md-6">
+                    <div class="alert alert-danger" role="alert" id="login-alert" style="display: none;">
+                        Ocurrió un error, revisa los campos
+                    </div>
+                    <h1>Inicia sesión</h1>
+                    <div class="login-underline-bar"></div>
+                    <div class="form-outline mb-4">
+                        <div class="">Correo electrónico</div>
+                        <input class="form-control" type="text" id="email-login" name="email" required>
+                    </div>
+                    <div class="form-outline mb-4" style="display:none" id="otp-field">
+                        <div class="">OTP</div>
+                        <input class="form-control" type="number" maxlength="6" name="otp">
+                    </div>
+                    <div class="form-outline mb-4">
+                        <div class="" id="password-label">Contraseña</div>
+                        <input class="form-control" id="password-login" name="password" required type="password">
+                    </div>
+                    <div class="">
+                        <div class=""></div>
+                        <button href="#" style="cursor: pointer; display: none" type="submit" id="recover-button"
+                                class="btn btn-primary btn-block mb-4" value="RecuperarContrasenna">
+                            Cambiar contraseña
+                        </button>
+                        <button href="#" type="submit" class="btn btn-primary btn-block mb-4" value="Login"
+                                id="login-button"
+                                style="
+                                background-color: #f3dfa2;
+                                border-color: #f3dfa2;
+                                color: black;">
+                            Iniciar sesión
+                        </button>
+                    </div>
+                    <a style="cursor: pointer" id="recover-link">Recuperar contraseña con email</a> <br />
+                    <a class="" id="to-register" asp-area="" asp-controller="Registro" asp-action="Registro">Registrarse</a>
+                    <br />
+                    <a style="cursor: pointer; display:none" asp-controller="LogIn" asp-action="LogIn" id="login-link">
+                        Inicia
+                        sesión
+                    </a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+  
+
+<script src="/js/Login/Login.js" />
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

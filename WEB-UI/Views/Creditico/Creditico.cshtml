@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "CREDITICO_SA";
+    Layout = "../Shared/_Layout.cshtml";
+}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Préstamos - Creditico SA</title>
+</head>
+<body>
+
+    <h1>Calculadora de Préstamos - Creditico SA</h1>
+
+    <form id="loanForm">
+        <label for="customerType">Tipo de Cliente:</label>
+        <select id="customerType" name="customerType" required>
+            <option value="fisico">Físico</option>
+            <option value="juridico">Jurídico</option>
+        </select>
+
+        <label for="loanAmount">Monto del Crédito solicitado:</label>
+        <input type="number" id="loanAmount" name="loanAmount" required>
+
+        <label for="annualInterestRate">Tasa Anual de Interés (%):</label>
+        <input type="number" id="annualInterestRate" name="annualInterestRate" required>
+
+        <label for="loanTerm">Plazo del Préstamo (en años):</label>
+        <input type="number" id="loanTerm" name="loanTerm" required>
+
+        <label for="commissionPercentage">Porcentaje de Comisión por Desembolso (%):</label>
+        <input type="number" id="commissionPercentage" name="commissionPercentage" required>
+
+        <label for="monthlyIncome">Ingreso Neto Mensual:</label>
+        <input type="number" id="monthlyIncome" name="monthlyIncome" required>
+
+        <label for="currentLoanPayment">Mensualidad de Préstamos Actuales (monto):</label>
+        <input type="number" id="currentLoanPayment" name="currentLoanPayment" required>
+
+        <label for="dependents">Personas Dependientes:</label>
+        <input type="number" id="dependents" name="dependents" required>
+
+        <button type="button" onclick="calculateMonthlyPayment()">Calcular</button>
+    </form>
+
+    <h2>Resultado</h2>
+    <p id="result">El monto mensual a pagar se mostrará aquí.</p>
+
+    <script>
+        function calculateMonthlyPayment() {
+            // Obtener los valores de los campos
+            const loanAmount = parseFloat(document.getElementById('loanAmount').value);
+            const annualInterestRate = parseFloat(document.getElementById('annualInterestRate').value);
+            const loanTerm = parseFloat(document.getElementById('loanTerm').value);
+            const commissionPercentage = parseFloat(document.getElementById('commissionPercentage').value);
+            const monthlyIncome = parseFloat(document.getElementById('monthlyIncome').value);
+            const currentLoanPayment = parseFloat(document.getElementById('currentLoanPayment').value);
+            const dependents = parseFloat(document.getElementById('dependents').value);
+
+            // Realizar el cálculo del monto mensual a pagar (aquí deberías utilizar la fórmula proporcionada)
+            // Por ejemplo, puedes usar la fórmula: montoMensual = (loanAmount + (loanAmount * commissionPercentage / 100)) * (1 + (annualInterestRate / 100) * loanTerm) / (loanTerm * 12);
+
+            // Mostrar el resultado en la página
+            const resultElement = document.getElementById('result');
+            resultElement.textContent = `El monto mensual a pagar es: $${montoMensual}`;
+        }
+    </script>
+
+</body>
+</html>
