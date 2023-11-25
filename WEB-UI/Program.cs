@@ -8,7 +8,6 @@ builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddSession(options =>
 {
-    options.Cookie.Name = "ISA-IEEE-Cookie";
     options.IdleTimeout = TimeSpan.FromSeconds(60);
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = false;
@@ -33,7 +32,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Creditico}/{action=Creditico}/{id?}");
 
 app.UseSession();
 
