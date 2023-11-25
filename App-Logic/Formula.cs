@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DTO.Models
+namespace App_Logic
 {
-    public class BaseClass
+    internal class Formula
     {
-        public int Id { get; set; }
     }
 }

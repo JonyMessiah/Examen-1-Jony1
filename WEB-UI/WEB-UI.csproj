@@ -9,6 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Scripts\Creditico.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Scripts\Creditico.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DTO\DTO.csproj" />
   </ItemGroup>
 
