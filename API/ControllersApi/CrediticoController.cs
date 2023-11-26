@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.Cors;
 using DTO;
 using DTO.Models;
 using System.Diagnostics;
+using App_Logic;
 
 namespace API.Controllers
 {
@@ -30,6 +31,7 @@ namespace API.Controllers
         public ActionResult CrediticoForm(IFormCollection form)
         {
             CrediticoDTO dtoCreditico = new CrediticoDTO();
+          
             dtoCreditico.AnnualInterestRate = Request.Form["loanAmount"];
             dtoCreditico.monthlyIncome = Request.Form["monthlyIncome"];
             dtoCreditico.commissionPercentage = Request.Form["commisionPercentage"];
@@ -38,10 +40,12 @@ namespace API.Controllers
             dtoCreditico.customerType = Request.Form["customerType"];
             dtoCreditico.currentLoanPayment = Request.Form["currentLoanPayment"];
             dtoCreditico.loanTerm = Request.Form["loanTerm"];
-
+        
 
             Debug.WriteLine($"loanTerm: {dtoCreditico.loanTerm}");
             Debug.WriteLine("MIAU");
+
+            Formula.EvaluateRisk(dtoCreditico);
 
             return Json(new { success = true });
 

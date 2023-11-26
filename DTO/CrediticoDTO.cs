@@ -22,5 +22,7 @@ namespace DTO.Models
 
         public string dependents { get; set; }
 
+        public double results { get; set; }
+
     }
 }
