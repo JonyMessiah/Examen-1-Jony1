@@ -26,13 +26,14 @@ namespace App_Logic
 
             loanTerm = loanTerm * 12;
 
-           dtoCreditico.loanTerm = loanTerm.ToString();
 
   
          dtoCreditico.monthlyPayment = (totalLoanAmount * monthlyInterestRate) /
                                     (1 - Math.Pow((1 + monthlyInterestRate), -loanTerm));
 
- 
+
+            dtoCreditico.loanTerm = loanTerm.ToString();
+
             double incomePercentage = (dtoCreditico.monthlyPayment + currentLoanPayment) / monthlyIncome * 100;
 
 
@@ -47,6 +48,7 @@ namespace App_Logic
                     {
 
                         dtoCreditico.riskResult = "Riesgo Medio";
+                        dtoCreditico.riskCriteria = "Ingresos mensuales superiores al 50 %, sin dependientes";
                         return "Riesgo Medio";
 
 
@@ -55,6 +57,7 @@ namespace App_Logic
                     else
                     {
                         dtoCreditico.riskResult = "Riesgo Alto";
+                        dtoCreditico.riskCriteria = "Ingresos mensuales superiores al 50 %, con dependientes";
                         return "Riesgo Alto";
                     }
                 }
@@ -65,18 +68,21 @@ namespace App_Logic
                     {
 
                         dtoCreditico.riskResult = "Riesgo Bajo";
+                        dtoCreditico.riskCriteria = "Ingresos mensuales superiores al 30 % y menor o igual al 50 %, sin dependientes";
                         return "Riesgo Bajo";
-
+                    
 
 
                     } else if (dependents >= 5) {
                         dtoCreditico.riskResult = "Riesgo Alto";
+                        dtoCreditico.riskCriteria = "Ingresos mensuales superiores al 30 % y menor o igual al 50 %, con 5 o más dependientes";
                         return "Riesgo Alto";
 
                     }
                     else
                     {
                         dtoCreditico.riskResult = "Riesgo Medio";
+                        dtoCreditico.riskCriteria = "Ingresos mensuales superiores al 30 % y menor o igual al 50 %, con más de un dependiente pero menos de 5";
                         return "Riesgo Medio";
 
 
@@ -87,10 +93,12 @@ namespace App_Logic
                if (dependents >= 5)
                 {
                     dtoCreditico.riskResult = "Riesgo Medio";
-                    return "Riesgo Medio";
+                    dtoCreditico.riskCriteria = "Ingresos mensuales inferiores al 30 %, con 5 o más dependientes";
+                        return "Riesgo Medio";
 
                 }
                 dtoCreditico.riskResult = "Riesgo Bajo";
+                    dtoCreditico.riskCriteria = "Ingresos mensuales inferiores al 30 %, con menos de 5 dependientes";
                     return "Riesgo Bajo";
                 }
             }
@@ -102,16 +110,19 @@ namespace App_Logic
                 {
 
                     dtoCreditico.riskResult = "Riesgo Alto";
+                    dtoCreditico.riskCriteria = "Ingresos mensuales superiores al 30 %.";
                     return "Riesgo Alto";
                 }
                 else if (incomePercentage >= 10 && incomePercentage <= 30)
                 {
                     dtoCreditico.riskResult = "Riesgo Medio";
+                    dtoCreditico.riskCriteria = "Ingresos mensuales superiores o iguales al 10 % e inferiores o iguales al 30 %.";
                     return "Riesgo Medio";
                 }
                 else
                 {
                     dtoCreditico.riskResult = "Riesgo Bajo";
+                    dtoCreditico.riskCriteria = "Ingresos mensuales inferiores al 10 %.";
                     return "Riesgo Bajo";
                 }
             }

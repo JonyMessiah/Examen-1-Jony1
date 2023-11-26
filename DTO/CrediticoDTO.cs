@@ -28,6 +28,6 @@ namespace DTO.Models
 
         public string riskResult { get; set; }
 
-        public double riskCriteria { get; set; }
+        public string riskCriteria { get; set; }
     }
 }

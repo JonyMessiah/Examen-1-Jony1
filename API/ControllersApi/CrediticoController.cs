@@ -41,10 +41,9 @@ namespace API.Controllers
             Debug.WriteLine($"loanTerm: {dtoCreditico.loanTerm}");
             Debug.WriteLine("MIAU");
 
-            // Calcular y evaluar el riesgo
             var result = Formula.EvaluateRisk(dtoCreditico);
 
-            // Devolver los resultados junto con la indicación de éxito
+      
             return Json(new
             {
                 success = true,
@@ -53,7 +52,7 @@ namespace API.Controllers
                 loanTerm = dtoCreditico.loanTerm,
                 commissionPercentage = dtoCreditico.commissionPercentage,
                 riskResult = dtoCreditico.riskResult,
-              // riskCriteria = result.RiskCriteria
+                riskCriteria = dtoCreditico.riskCriteria
             });
         }
     }
