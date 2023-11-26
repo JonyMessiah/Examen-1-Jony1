@@ -16,4 +16,11 @@
     <Folder Include="wwwroot\Scripts\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="wwwroot\js\Creditico.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

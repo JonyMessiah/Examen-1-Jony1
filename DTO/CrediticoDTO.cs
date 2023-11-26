@@ -24,5 +24,10 @@ namespace DTO.Models
 
         public double results { get; set; }
 
+        public double monthlyPayment { get; set; }
+
+        public string riskResult { get; set; }
+
+        public double riskCriteria { get; set; }
     }
 }

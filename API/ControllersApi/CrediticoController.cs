@@ -1,12 +1,10 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System;
 using System.Net.Http;
 using System.Net;
-using static System.Net.WebRequestMethods;
 using System.Data.SqlClient;
 
 using System.Data;
@@ -21,7 +19,6 @@ using App_Logic;
 
 namespace API.Controllers
 {
-
     [EnableCors("MyCorsPolicy")]
     [Route("API/Creditico/Creditico")]
     [ApiController]
@@ -31,7 +28,7 @@ namespace API.Controllers
         public ActionResult CrediticoForm(IFormCollection form)
         {
             CrediticoDTO dtoCreditico = new CrediticoDTO();
-          
+
             dtoCreditico.AnnualInterestRate = Request.Form["loanAmount"];
             dtoCreditico.monthlyIncome = Request.Form["monthlyIncome"];
             dtoCreditico.commissionPercentage = Request.Form["commisionPercentage"];
@@ -40,18 +37,24 @@ namespace API.Controllers
             dtoCreditico.customerType = Request.Form["customerType"];
             dtoCreditico.currentLoanPayment = Request.Form["currentLoanPayment"];
             dtoCreditico.loanTerm = Request.Form["loanTerm"];
-        
 
             Debug.WriteLine($"loanTerm: {dtoCreditico.loanTerm}");
             Debug.WriteLine("MIAU");
 
-            Formula.EvaluateRisk(dtoCreditico);
+            // Calcular y evaluar el riesgo
+            var result = Formula.EvaluateRisk(dtoCreditico);
 
-            return Json(new { success = true });
-
-
+            // Devolver los resultados junto con la indicación de éxito
+            return Json(new
+            {
+                success = true,
+                customerType = dtoCreditico.customerType,
+                monthlyPayment = dtoCreditico.monthlyPayment,
+                loanTerm = dtoCreditico.loanTerm,
+                commissionPercentage = dtoCreditico.commissionPercentage,
+                riskResult = dtoCreditico.riskResult,
+              // riskCriteria = result.RiskCriteria
+            });
         }
-
     }
-
 }

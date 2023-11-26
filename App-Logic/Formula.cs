@@ -17,50 +17,101 @@ namespace App_Logic
             double currentLoanPayment = Convert.ToDouble(dtoCreditico.currentLoanPayment);
             int dependents = Convert.ToInt32(dtoCreditico.dependents);
 
+          
        
             double totalLoanAmount = loanAmount + (loanAmount * commissionPercentage / 100);
 
    
             double monthlyInterestRate = annualInterestRate / 12 / 100;
 
+            loanTerm = loanTerm * 12;
+
+           dtoCreditico.loanTerm = loanTerm.ToString();
+
   
-            double monthlyPayment = (totalLoanAmount * monthlyInterestRate) /
+         dtoCreditico.monthlyPayment = (totalLoanAmount * monthlyInterestRate) /
                                     (1 - Math.Pow((1 + monthlyInterestRate), -loanTerm));
 
  
-            double incomePercentage = (monthlyPayment + currentLoanPayment) / monthlyIncome * 100;
+            double incomePercentage = (dtoCreditico.monthlyPayment + currentLoanPayment) / monthlyIncome * 100;
 
 
             if (dtoCreditico.customerType.Equals("Fisico", StringComparison.OrdinalIgnoreCase))
             {
+
+                dtoCreditico.commissionPercentage = incomePercentage.ToString();
                 if (incomePercentage > 50)
                 {
-                    return "Riesgo Alto";
+
+                    if (dependents == 0)
+                    {
+
+                        dtoCreditico.riskResult = "Riesgo Medio";
+                        return "Riesgo Medio";
+
+
+
+                    }
+                    else
+                    {
+                        dtoCreditico.riskResult = "Riesgo Alto";
+                        return "Riesgo Alto";
+                    }
                 }
                 else if (incomePercentage >= 30 && incomePercentage <= 50)
                 {
-                    return "Riesgo Medio";
+
+                    if (dependents == 0)
+                    {
+
+                        dtoCreditico.riskResult = "Riesgo Bajo";
+                        return "Riesgo Bajo";
+
+
+
+                    } else if (dependents >= 5) {
+                        dtoCreditico.riskResult = "Riesgo Alto";
+                        return "Riesgo Alto";
+
+                    }
+                    else
+                    {
+                        dtoCreditico.riskResult = "Riesgo Medio";
+                        return "Riesgo Medio";
+
+
+                    }
                 }
                 else
                 {
+               if (dependents >= 5)
+                {
+                    dtoCreditico.riskResult = "Riesgo Medio";
+                    return "Riesgo Medio";
+
+                }
+                dtoCreditico.riskResult = "Riesgo Bajo";
                     return "Riesgo Bajo";
                 }
             }
             else if (dtoCreditico.customerType.Equals("Juridico", StringComparison.OrdinalIgnoreCase))
             {
             
-                double toleranceAdjustedPercentage = incomePercentage - (incomePercentage * 0.20);
-
-                if (toleranceAdjustedPercentage > 30)
+        
+                if (incomePercentage > 30)
                 {
+
+                    dtoCreditico.riskResult = "Riesgo Alto";
                     return "Riesgo Alto";
                 }
-                else if (toleranceAdjustedPercentage >= 10 && toleranceAdjustedPercentage <= 30)
+                else if (incomePercentage >= 10 && incomePercentage <= 30)
                 {
+                    dtoCreditico.riskResult = "Riesgo Medio";
                     return "Riesgo Medio";
                 }
                 else
                 {
+                    dtoCreditico.riskResult = "Riesgo Bajo";
                     return "Riesgo Bajo";
                 }
             }
